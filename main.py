@@ -739,31 +739,29 @@ def series(number):
         s=number[4:6]
         s1=number[4:5]
         s2=number[5:6]
+        
 
     series_number= ord(s1)-ord(s2)  
 
     print("Series Code :",s)
 
-    return series_number
+    return abs(series_number)
 
 def vehicle(number,order):
     o=int(order)
-    if number[6:11].isnumeric():
-        n=number[6:11]
+    if number[6:10].isnumeric():
+        n=number[6:10]
 
     n=int(n)
     
-
     vehicle_number=(o*9999)+n
 
     print("Vehicle Number :",n)
 
     return vehicle_number     
 
-# def number(number):
-#     print(number)
-
- 
+def number(number):
+    print("The number of the vehicle in the state is :",number)
 
 def main():
    
@@ -777,7 +775,7 @@ def main():
         district(plate,dis)
         p=series(plate)
         v=vehicle(plate,p)
-        # number(v)
+        number(v)
     else:
         print("Entered number plate is invalid!!")
 
