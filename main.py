@@ -1,9 +1,12 @@
 def state(number):
 
-  number=number.upper()
+ 
 
   if number[0:2].isalpha():
         code=number[0:2]
+  else:
+      print("invalid state")
+      return      
 
 
   state_codes = (
@@ -47,14 +50,18 @@ def state(number):
         i=state_codes.index(code)
         print("State :",states[i])
   else:
-     print("invalid State")   
+     print("invalid district")   
+     return
 
   return code    
 
 def district(number,code):
   
   if number[2:4].isnumeric():
-     rto=number[2:4]    
+     rto=number[2:4]  
+  else:
+      print("invalid rto code")
+      return     
     
   rto_codes = {
     "AP": {
@@ -730,27 +737,36 @@ def district(number,code):
   
   if code in rto_codes and rto in rto_codes[code]:
      print("District :",rto_codes[code][rto])
+  else:
+      print("invalid district")
+      return rto 
     
 def series(number):
-
-    number=number.upper()
 
     if number[4:6].isalpha():
         s=number[4:6]
         s1=number[4:5]
         s2=number[5:6]
-        
+    else :
+        print("invalid series")
+        return
 
-    series_number= ord(s1)-ord(s2)  
+    first=ord(s1)-ord("A")
+    second=ord(s2)-ord("A")
+
+    series_number= (first*26)+second  
 
     print("Series Code :",s)
 
-    return abs(series_number)
+    return series_number
 
-def vehicle(number,order):
-    o=int(order)
+def vehicle(number,o):
+    o=int(o)
     if number[6:10].isnumeric():
         n=number[6:10]
+    else:
+        print("invalid vehicle number")  
+        return  
 
     n=int(n)
     
@@ -761,7 +777,7 @@ def vehicle(number,order):
     return vehicle_number     
 
 def number(number):
-    print("The number of the vehicle in the state is :",number)
+    print(f"The number of the vehicle in the state is : {number}th vehicle")
 
 def main():
    
@@ -769,12 +785,24 @@ def main():
 
     plate=plate.strip()
     plate=plate.replace(" ","")
+    plate=plate.upper()
 
     if len(plate)==10:  
         dis=state(plate)
-        district(plate,dis)
+        if dis is None:
+            return
+
+        d=district(plate,dis)
+        if d is None:
+            return
+        
         p=series(plate)
+        if p is None:
+            return 
+        
         v=vehicle(plate,p)
+        if v is None:
+            return
         number(v)
     else:
         print("Entered number plate is invalid!!")
