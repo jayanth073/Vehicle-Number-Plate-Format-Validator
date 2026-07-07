@@ -1,12 +1,18 @@
-def numberplate(number):
-  
+def state(number):
+
   number=number.upper()
+
+  if number[0:2].isalpha():
+        code=number[0:2]
+
+
   state_codes = (
     "AP", "AR", "AS", "BR", "CG", "GA", "GJ", "HR", "HP",
     "JH", "KA", "KL", "MP", "MH", "MN", "ML", "MZ", "NL",
     "OD", "PB", "RJ", "SK", "TN", "TS", "TR", "UP", "UK", 
     "WB"
   )
+
   states=(
     "Andhra Pradesh",
     "Arunachal Pradesh",
@@ -37,6 +43,19 @@ def numberplate(number):
     "Uttarakhand",
     "West Bengal" )
   
+  if code in state_codes:
+        i=state_codes.index(code)
+        print("State :",states[i])
+  else:
+     print("invalid State")   
+
+  return code    
+
+def district(number,code):
+  
+  if number[2:4].isnumeric():
+     rto=number[2:4]    
+    
   rto_codes = {
     "AP": {
         "01": "Srikakulam",
@@ -707,37 +726,32 @@ def numberplate(number):
         "17": "Roorkee",
         "18": "Udham Singh Nagar"
     }
-    }
-    
-
-  
-  if number[0:2].isalpha():
-    code=number[0:2]
-  
-  if code in state_codes:
-        i=state_codes.index(code)
-        print("State :",states[i])
-  else:
-     print("invalid State")     
-
-  if number[2:4].isnumeric():
-     rto=number[2:4]    
+  }
   
   if code in rto_codes and rto in rto_codes[code]:
      print("District :",rto_codes[code][rto])
-        
+    
 
-   
-     
-     
  
-plate = input("Enter your number plate: ")
 
-plate=plate.strip()
-plate=plate.replace(" ","")
-if len(plate)==10:  
-    numberplate(plate)
-else:
-   print("Entered number plate is invalid!!")
+def main():
+   
+    plate = input("Enter your number plate: ")
+
+    plate=plate.strip()
+    plate=plate.replace(" ","")
+
+    if len(plate)==10:  
+        dis=state(plate)
+        district(plate,dis)
+    else:
+        print("Entered number plate is invalid!!")
+
+main()        
 
 
+
+ 
+ 
+
+  
