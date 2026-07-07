@@ -734,7 +734,7 @@ def district(number,code):
 def series(number):
 
     number=number.upper()
-    
+
     if number[4:6].isalpha():
         s=number[4:6]
         s1=number[4:5]
@@ -746,16 +746,19 @@ def series(number):
 
     return series_number
 
-# def vehicle(number,order):
+def vehicle(number,order):
+    o=int(order)
+    if number[6:11].isnumeric():
+        n=number[6:11]
 
-#     if number[6:11].isnumerical():
-#         n=number[6:11]
+    n=int(n)
+    
 
-#     vehicle_number=(order*9999)+n
+    vehicle_number=(o*9999)+n
 
-#     print("Vehicle Number :",n)
+    print("Vehicle Number :",n)
 
-#     return vehicle_number     
+    return vehicle_number     
 
 # def number(number):
 #     print(number)
@@ -773,7 +776,7 @@ def main():
         dis=state(plate)
         district(plate,dis)
         p=series(plate)
-        # v=vehicle(plate,p)
+        v=vehicle(plate,p)
         # number(v)
     else:
         print("Entered number plate is invalid!!")
